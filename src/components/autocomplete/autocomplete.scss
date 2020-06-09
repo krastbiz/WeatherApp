@@ -1,0 +1,27 @@
+.autocomplete {
+  position: relative;
+}
+
+.suggestions {
+  padding: 0 0 0 30px;
+  margin: 0;
+  width: 100%;
+  max-height: 100px;
+  overflow-y: auto;
+
+  position: absolute;
+  z-index: 1000;
+
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background-color: #fbfbfb;
+  list-style: none;
+}
+
+.suggestion {
+  padding: 10px 0;
+
+  &-active {
+    background-color: black;
+  }
+}
