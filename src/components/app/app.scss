@@ -10,7 +10,6 @@ body {
   height: 100%;
   margin: 0;
   font-family: 'Lato', sans-serif;
-  font-size: 100%;
 }
 
 p {
@@ -24,6 +23,7 @@ p {
 
 :root {
   --card-container-width: 690px;
+  --wind-dir: 0deg;
 }
 
 #root {
@@ -36,6 +36,12 @@ p {
   align-items: center;
 
   height: inherit;
+}
+
+.font {
+  &--big {
+    font-size: 150%;
+  }
 }
 
 .content {
@@ -68,9 +74,17 @@ p {
     min-height: 500px;
 
     background-color: #e0dcdc;
+
+    .content-nav {
+      text-align: right;
+      justify-content: flex-end;
+    }
   }
 
   &-nav {
+    display: flex;
+    align-items: flex-start;
+    min-height: 25px;
     margin-bottom: 25px;
   }
 }
@@ -93,10 +107,37 @@ p {
     padding-left: 30px;
     border: none;
     outline: none;
-
-    font-size: 0.8em;
+    width: 100%;
+    font-size: 1em;
   }
 }
+
+.toggle {
+
+  &-font {
+    border-radius: 25px;
+    height: 30px;
+    width: 30px;
+
+    border: none;
+    background-color: #fff;
+    outline: none;
+
+    cursor: pointer;
+    transition: .2s all;
+
+    &:hover {
+      box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+    }
+  }
+
+  &--active {
+    background-color: #f3f577;
+    color: black;
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+  }
+}
+
 
 // main info
 .main-info {
@@ -176,7 +217,7 @@ p {
 
   &__title {
     text-transform: uppercase;
-    min-width: 80px;
+    min-width: 100px;
   }
 
   &__title {
@@ -207,7 +248,7 @@ $card-padding: 10px;
     position: absolute;
     top: 10px;
     margin: 0;
-    font-size: 1em;
+    font-size: 0.8em;
   }
 
   &-inner {
@@ -280,6 +321,12 @@ $card-padding: 10px;
       width: 960px;
     }
   }
+
+  .detail {
+    &__title {
+      min-width: 100px;
+    }
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -303,6 +350,10 @@ $card-padding: 10px;
     &__location {
       padding: 15px 0px;
     }
+
+    &__temperature {
+      font-size: 4em;
+    }
   }
 
   .card {
@@ -312,6 +363,27 @@ $card-padding: 10px;
       }
     }
 
+  }
+
+  .unit-type {
+    font-size: 20px;
+  }
+
+  .detail {
+    &__title {
+      font-size: 1em;
+      min-width: 80px;
+    }
+  }
+
+  .search__input {
+    font-size: 1.5em;
+  }
+
+  .toggle-font {
+    &:hover {
+      box-shadow: none;
+    }
   }
 }
 
@@ -366,8 +438,18 @@ $card-padding: 10px;
     }
 
     &__title {
-      min-width: 50px;
+      min-width: 70px;
       font-size: 1em;
+    }
+    
+    &-info {
+      &__cards {
+        width: 550px;
+      }
+
+      &-cards-wrapper {
+        overflow: auto;
+      }
     }
   }
 
@@ -395,6 +477,20 @@ $card-padding: 10px;
       .detail img {
         max-width: 20px;
       }
+    }
+
+    &__title {
+      font-size: 0.8em;
+    }
+  }
+
+  .search__input {
+    font-size: 1.5em;
+  }
+
+  .toggle-font {
+    &:hover {
+      box-shadow: none;
     }
   }
 }
@@ -433,7 +529,7 @@ $card-padding: 10px;
 
     &__temperature {
       margin-right: 30px;
-      font-size: 3.5em;
+      font-size: 2.5em;
     }
 
     &__date {
@@ -462,13 +558,13 @@ $card-padding: 10px;
     }
 
     &__title {
-      min-width: 50px;
+      min-width: 70px;
       font-size: 1em;
     }
 
     &-info {
       &__cards {
-        width: 500px;
+        width: 550px;
       }
 
       &-cards-wrapper {
@@ -502,6 +598,10 @@ $card-padding: 10px;
         max-width: 20px;
       }
     }
+
+    &__title {
+      font-size: 0.8em;
+    }
   }
 
   .content {
@@ -514,4 +614,24 @@ $card-padding: 10px;
     margin-bottom: 15px;
   }
 
+  .search__input {
+    font-size: 1.5em;
+  }
+
+  .toggle-font {
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
+.direction {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 15px;
+  background: url(../../assets/direction.png) center no-repeat;
+  background-size: cover;
+  transform: rotate(var(--wind-dir));
+  transition: 1s;
 }

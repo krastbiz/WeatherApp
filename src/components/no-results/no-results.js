@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './no-results.scss';
+
 const NoResults = ({ text }) => {
 
   if (!text) {
