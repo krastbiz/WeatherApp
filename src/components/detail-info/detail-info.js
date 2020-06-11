@@ -1,4 +1,7 @@
 import React from 'react';
+
+import './detail-info.scss';
+
 import sunriseImg from '../../assets/sunrise.png';
 import sunsetImg from '../../assets/sunset.png';
 

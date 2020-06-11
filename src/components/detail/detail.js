@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './detail.scss';
+
 const Detail = (props) => {
 
   const { title, renderValue } = props;

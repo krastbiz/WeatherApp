@@ -1,6 +1,8 @@
 import React from 'react';
 import Detail from '../detail';
 
+import './main-info.scss';
+
 import defaultCloud from '../../assets/atmosphere-default.png';
 import cloud from '../../assets/cloud.png';
 import drizzle from '../../assets/drizzle.png';
@@ -17,7 +19,7 @@ import { toTitleCase } from '../../utils/string-util';
 const MainInfo = (props) => {
 
   const { id, city, country, temperature, temperatureFeels, timezone, description, iconUrl } = props.weather;
-  
+
   return (
     <div className="main-info">
 

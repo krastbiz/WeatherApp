@@ -1,0 +1,47 @@
+.detail-info {
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .detail {
+    &-info {
+      &__cards {
+        width: 550px;
+      }
+
+      &-cards-wrapper {
+        overflow: auto;
+      }
+    }
+  }
+}
+
+@media (min-width: 0px) and (max-width: 575px) {
+  .detail {
+    &-info {
+      &__cards {
+        width: 550px;
+      }
+
+      &-cards-wrapper {
+        overflow: auto;
+      }
+    }
+  }
+}
