@@ -1,49 +1,49 @@
 
-@keyframes ldio-6e0h9zstjg5 {
+@keyframes loading-spinner__dots {
    0% { transform: translate(6px,40px) scale(0); }
   25% { transform: translate(6px,40px) scale(0); }
   50% { transform: translate(6px,40px) scale(1); }
   75% { transform: translate(40px,40px) scale(1); }
  100% { transform: translate(74px,40px) scale(1); }
 }
-@keyframes ldio-6e0h9zstjg5-r {
+@keyframes loading-spinner__dots-r {
    0% { transform: translate(74px,40px) scale(1); }
  100% { transform: translate(74px,40px) scale(0); }
 }
-@keyframes ldio-6e0h9zstjg5-c {
+@keyframes loading-spinner__dots-c {
    0% { background: #d4fffd }
   25% { background: #f3f577 }
   50% { background: #d4fffd }
   75% { background: #f3f577 }
  100% { background: #d4fffd }
 }
-.ldio-6e0h9zstjg5 div {
+.loading-spinner__dots div {
   position: absolute;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   transform: translate(40px,40px) scale(1);
   background: #d4fffd;
-  animation: ldio-6e0h9zstjg5 1s infinite cubic-bezier(0,0.5,0.5,1);
+  animation: loading-spinner__dots 1s infinite cubic-bezier(0,0.5,0.5,1);
 }
-.ldio-6e0h9zstjg5 div:nth-child(1) {
+.loading-spinner__dots div:nth-child(1) {
   background: #f3f577;
   transform: translate(74px,40px) scale(1);
-  animation: ldio-6e0h9zstjg5-r 0.25s infinite cubic-bezier(0,0.5,0.5,1), ldio-6e0h9zstjg5-c 1s infinite step-start;
-}.ldio-6e0h9zstjg5 div:nth-child(2) {
+  animation: loading-spinner__dots-r 0.25s infinite cubic-bezier(0,0.5,0.5,1), loading-spinner__dots-c 1s infinite step-start;
+}.loading-spinner__dots div:nth-child(2) {
   animation-delay: -0.25s;
   background: #d4fffd;
-}.ldio-6e0h9zstjg5 div:nth-child(3) {
+}.loading-spinner__dots div:nth-child(3) {
   animation-delay: -0.5s;
   background: #f3f577;
-}.ldio-6e0h9zstjg5 div:nth-child(4) {
+}.loading-spinner__dots div:nth-child(4) {
   animation-delay: -0.75s;
   background: #d4fffd;
-}.ldio-6e0h9zstjg5 div:nth-child(5) {
+}.loading-spinner__dots div:nth-child(5) {
   animation-delay: -1s;
   background: #f3f577;
 }
-.loadingio-spinner-ellipsis-s8ldt8m73m {
+.loading-spinner {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -54,7 +54,7 @@
   overflow: hidden;
   background: transparent;
 }
-.ldio-6e0h9zstjg5 {
+.loading-spinner__dots {
   width: 100%;
   height: 100%;
   position: relative;
@@ -62,4 +62,4 @@
   backface-visibility: hidden;
   transform-origin: 0 0; /* see note above */
 }
-.ldio-6e0h9zstjg5 div { box-sizing: content-box; }
+.loading-spinner__dots div { box-sizing: content-box; }

@@ -17,7 +17,7 @@ import { toTitleCase } from '../../utils/string-util';
 const MainInfo = (props) => {
 
   const { id, city, country, temperature, temperatureFeels, timezone, description, iconUrl } = props.weather;
-  console.log(id);
+  
   return (
     <div className="main-info">
 
@@ -36,7 +36,7 @@ const MainInfo = (props) => {
 
       <div className="main-info__details">
 
-        <Detail renderValue={() => <>Feels like: {toCelsius(temperatureFeels)}<sup class="temp-unit">°</sup> </>}>
+        <Detail renderValue={() => <>Feels like: {toCelsius(temperatureFeels)}<sup className="temp-unit">°</sup> </>}>
           <img src={temperatureImg} alt ="Temperature" />
         </Detail>
 

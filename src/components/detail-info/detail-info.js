@@ -18,13 +18,9 @@ const DetailInfo = (props) => {
           wind,
           visibility } = props.details;
 
-  setTimeout(() => {
-    console.log("settimeout");
-    
+  setTimeout(() => {    
     document.documentElement.style.setProperty('--wind-dir', `${wind.direction}deg`);
   }, 0);
-  
-
 
   return (
     <div className="detail-info">

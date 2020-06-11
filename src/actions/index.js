@@ -22,7 +22,7 @@ const fetchCityWeather = (weatherService, dispatch) => (city) => {
   dispatch(currentWeatherRequested());
   weatherService.getCityWeather(city)
     .then((data) => dispatch(currentWeatherLoaded(data)))
-    .catch((error) => dispatch(currentWeatherError(error)));
+    .catch(error => dispatch(currentWeatherError(error)));
   
 }
 

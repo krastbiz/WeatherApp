@@ -4,7 +4,7 @@ const reducer = (state, action) => {
   if (state === undefined) {
     return {
       loading: false,
-      error: false,
+      error: null,
       currentWeather: null,
       bigFontToggled: false
     }
@@ -16,13 +16,14 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: true,
-        error: false
+        error: null
       }
 
     case 'FETCH_CURRENT_WEATHER_SUCCESS':
       return {
         ...state,
         loading: false,
+        errro: null,
         currentWeather: action.payload
       }
 
@@ -30,7 +31,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        error: action.payload
       }
 
     case 'BIG_FONT_TOGGLED':

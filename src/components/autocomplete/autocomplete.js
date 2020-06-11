@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import './autocomplete.scss';
 
@@ -48,8 +46,6 @@ class AutocompleteField extends Component {
   }
 
   onBlur() {
-    // find another way to hold blur event handler
-    // first need click event to be fired, then blur
     this.setState({
         showSuggestions: false,
         activeSuggestionIndex: -1
@@ -80,7 +76,10 @@ class AutocompleteField extends Component {
     //38 UP
     //40 DOWN
     if (e.keyCode === 40 || e.keyCode === 38) {
-      //do logic here
+
+      if (e.keyCode === 38)
+        debugger;
+
       const { activeSuggestionIndex } = this.state;
       const currentSuggestions = this.getSuggestions();
 
@@ -96,7 +95,7 @@ class AutocompleteField extends Component {
                       ? activeSuggestionIndex >= currentSuggestions.length - 1 
                         ? 0 : activeSuggestionIndex + 1 
 
-                      : activeSuggestionIndex <= 0 || activeSuggestionIndex >= currentSuggestions.length - 1 
+                      : activeSuggestionIndex <= 0 || activeSuggestionIndex > currentSuggestions.length - 1 
                         ? currentSuggestions.length - 1 : activeSuggestionIndex - 1;
       }
       

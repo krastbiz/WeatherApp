@@ -13,6 +13,8 @@ import MainInfo from '../main-info';
 import LoadingSpinner from '../loading-spinner/loading-spinner';
 import DetailInfo from '../detail-info';
 import { storageHelper } from '../../helpers';
+import ErrorIndicator from '../error-indicator';
+import ErrorBoundry from '../error-boundry';
 
 const suggestionStorageKey = "suggestions";
 
@@ -31,7 +33,7 @@ class AppContent extends Component {
 
   render () {
 
-    const { loading, currentWeather, toggleBigFont, bigFontToggled } = this.props;
+    const { loading, currentWeather, toggleBigFont, bigFontToggled, error } = this.props;
 
     return (
       <>
@@ -44,11 +46,12 @@ class AppContent extends Component {
           </div>
 
           <div className="content-left-info">
+            <ErrorBoundry>
             { 
               loading ? <LoadingSpinner /> 
                       : currentWeather ? <MainInfo weather={currentWeather}/> : <SearchSuggestion />
-              // <MainInfo weather={currentWeather}/>
             }
+            </ErrorBoundry>
           </div>
 
         </div>
@@ -56,26 +59,29 @@ class AppContent extends Component {
         <div className="content-right">
 
           <div className="content-nav">
-            
             <button className={`toggle-font ${bigFontToggled ? 'toggle--active' : ''}`} onClick={toggleBigFont}>Aa</button>
           </div>
 
+          <ErrorBoundry>
           {
-            currentWeather  ? <DetailInfo title="Today" details={ currentWeather }/>
-                            : <NoResults /> 
+            error 
+              ? <ErrorIndicator error={error}/>
+              : currentWeather  ? <DetailInfo title="Today" details={ currentWeather }/>
+                                : <NoResults /> 
           }
-
+          </ErrorBoundry>
         </div>  
       </>
     );
   };
 }
 
-const mapStateToProps = ({loading, currentWeather, bigFontToggled}) => {
+const mapStateToProps = ({loading, currentWeather, bigFontToggled, error}) => {
   return {
     loading,
     currentWeather,
-    bigFontToggled
+    bigFontToggled,
+    error
   }
 }
 

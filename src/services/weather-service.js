@@ -10,21 +10,19 @@ export default class WeatherService {
     const res = await fetch(`${this._apiBase}${url}`);
 
     if (!res.ok) {
-      throw new Error(`Could not fetch ${url}, received ${res.status}`);
+      return Promise.reject({
+        message: `Could not fetch ${url}, received ${res.status}`,
+        code: res.status
+      });
     }
 
-    console.log(res);
     const body = await res.json();
-
     return body;
   }
 
   getCityWeather = async (name) => {
     const data = await this.getResource(`?q=${name}&appid=${this._apiKey}`);
-    const obj = this._transformWeather(data);
-    console.log('data', data);
-    console.log('weather', obj);
-    return obj;
+    return this._transformWeather(data);
   }
 
   _transformWeather(responseData) {

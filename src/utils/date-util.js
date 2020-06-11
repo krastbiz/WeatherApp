@@ -22,18 +22,6 @@ const getTime = (date) => {
   return `${date.getHours()}:${minutes}`;
 }
 
-const getUTCDate = (date) => {
-  const utc = Date.UTC(
-    date.getUTCFullYear(),
-    date.getUTCMonth(),
-    date.getUTCDate(),
-    date.getUTCHours(),
-    date.getUTCMinutes(),
-    date.getUTCSeconds())
-
-  return utc;
-}
-
 export { 
   fromUnixDate,
   getTimezoneTime,
