@@ -101,6 +101,8 @@ p {
     width: 14px;
     background: url("../../assets/search.png") no-repeat center;
     background-size: cover;
+
+    cursor: pointer;
   }
 
   &__input {
