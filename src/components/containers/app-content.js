@@ -18,6 +18,7 @@ import ErrorBoundry from '../error-boundry';
 
 const suggestionStorageKey = "suggestions";
 
+// TODO move presentation into separate component
 class AppContent extends Component {
 
   constructor(props) {
@@ -31,9 +32,45 @@ class AppContent extends Component {
     storageHelper.updateStorageArray(suggestionStorageKey, keyword);
   };
 
+  renderMainInfo() {
+    const { error, loading, currentWeather } = this.props;
+
+    if (error) {
+      return null
+    }
+
+    if (loading) {
+      return <LoadingSpinner />;
+    }
+
+    if (currentWeather) {
+      return <MainInfo weather={currentWeather}/>
+    } else {
+      return <SearchSuggestion />;
+    }
+  }
+
+  renderDetailInfo() {
+    const { error, currentWeather, loading } = this.props;
+
+    if (error) {
+      return <ErrorIndicator error={error}/>
+    }
+
+    if (loading) {
+      return null;
+    }
+
+    if (currentWeather) {
+      return <DetailInfo title="Today" details={ currentWeather }/>;
+    } else {
+      return <NoResults />;
+    }
+  }
+
   render () {
 
-    const { loading, currentWeather, toggleBigFont, bigFontToggled, error } = this.props;
+    const { toggleBigFont, bigFontToggled } = this.props;
 
     return (
       <>
@@ -47,10 +84,7 @@ class AppContent extends Component {
 
           <div className="content-left-info">
             <ErrorBoundry>
-            { 
-              loading ? <LoadingSpinner /> 
-                      : currentWeather ? <MainInfo weather={currentWeather}/> : <SearchSuggestion />
-            }
+            { this.renderMainInfo() }
             </ErrorBoundry>
           </div>
 
@@ -64,10 +98,7 @@ class AppContent extends Component {
 
           <ErrorBoundry>
           {
-            error 
-              ? <ErrorIndicator error={error}/>
-              : currentWeather  ? <DetailInfo title="Today" details={ currentWeather }/>
-                                : <NoResults /> 
+            this.renderDetailInfo()
           }
           </ErrorBoundry>
         </div>  

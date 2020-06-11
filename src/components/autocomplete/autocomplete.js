@@ -22,10 +22,15 @@ class AutocompleteField extends Component {
   }
 
   onSearch() {
-    this.inputRef.current.blur();
-
     const { onPerformSearch } = this.props;
     const { keyword } = this.state;
+
+    if (!this.isValid(keyword)) {
+      return;
+    }
+
+    this.inputRef.current.blur();
+
     if (onPerformSearch && keyword.length > 0) {
       onPerformSearch(this.state.keyword);
       
@@ -38,6 +43,10 @@ class AutocompleteField extends Component {
 
   onSearchIconClick(e) {
     const { keyword } = this.state;
+
+    if (!this.isValid(keyword)) {
+      return;
+    }
 
     if (keyword) {
       e.preventDefault();
@@ -52,46 +61,43 @@ class AutocompleteField extends Component {
       });
   }
 
+  isValid(value) {
+    if (value.replace(/\s/g, '').length) {
+      return true
+    }
+
+    return false;
+  }
+
   onChange(e) {
     this.setState({keyword: e.target.value});
   }
 
-  onKeyDown(e) {
-
-    // enter was pressed
-    if (e.keyCode === 13) {
-      //find selected suggestion
-      var suggest = [].find.call(this.suggestionsRef.current.children, (el) => el.classList.contains("suggestion-active"));
-
-      if (suggest) {
-        this.setState({keyword: suggest.innerText}, this.onSearch)
-      } else {
-        this.onSearch();
-      }
-
-
-      return;
+  handleEnterKey() {
+    //find selected suggestion
+    var suggest = [].find.call(this.suggestionsRef.current.children, (el) => el.classList.contains("suggestion-active"));
+    if (suggest) {
+      this.setState({keyword: suggest.innerText}, this.onSearch)
+    } else {
+      this.onSearch();
     }
 
-    //38 UP
-    //40 DOWN
-    if (e.keyCode === 40 || e.keyCode === 38) {
+    return;
+  }
 
-      if (e.keyCode === 38)
-        debugger;
-
+  handleArrowKeys(keyCode) {
       const { activeSuggestionIndex } = this.state;
       const currentSuggestions = this.getSuggestions();
 
       let newIndex;
       // check initial state 
       if (activeSuggestionIndex === -1) {
-        newIndex = e.keyCode === 40 
+        newIndex = keyCode === 40 
                     ? 0
                     : currentSuggestions.length - 1;
       } else {
         // update index
-        newIndex =  e.keyCode === 40 
+        newIndex =  keyCode === 40 
                       ? activeSuggestionIndex >= currentSuggestions.length - 1 
                         ? 0 : activeSuggestionIndex + 1 
 
@@ -106,6 +112,19 @@ class AutocompleteField extends Component {
 
       // update scroll position
       this.suggestionsRef.current.scrollTop = this.suggestionsRef.current.children[newIndex].offsetTop;
+  }
+
+  onKeyDown(e) {
+
+    // enter was pressed
+    if (e.keyCode === 13) {
+      this.handleEnterKey();
+    }
+
+    //38 UP
+    //40 DOWN
+    if (e.keyCode === 40 || e.keyCode === 38) {
+      this.handleArrowKeys(e.keyCode);
     }
   }
 
@@ -128,6 +147,7 @@ class AutocompleteField extends Component {
 
   const suggestions = this.getSuggestions();
 
+  //TODO move suggestion presentation in separate component
   return (
 
       <div className="autocomplete">
